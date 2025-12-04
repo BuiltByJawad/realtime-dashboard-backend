@@ -24,10 +24,15 @@ export const loginHandler = (req: Request, res: Response) => {
 
     const token = generateAuthToken(user);
 
+    // In production the frontend runs on a different origin (e.g. Vercel)
+    // so we need SameSite "none" + secure cookies to allow the browser
+    // to send the auth cookie with cross-site requests.
+    const isProd = env.NODE_ENV === 'production';
+
     res.cookie(COOKIE_NAME, token, {
         httpOnly: true,
-        secure: env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        secure: isProd,
+        sameSite: isProd ? 'none' : 'lax',
         maxAge: 60 * 60 * 1000,
     });
 
@@ -55,10 +60,12 @@ export const meHandler = (req: AuthenticatedRequest, res: Response) => {
 };
 
 export const logoutHandler = (req: Request, res: Response) => {
+    const isProd = env.NODE_ENV === 'production';
+
     res.clearCookie(COOKIE_NAME, {
         httpOnly: true,
-        secure: env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        secure: isProd,
+        sameSite: isProd ? 'none' : 'lax',
     });
 
     return res.json({ success: true });
