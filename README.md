@@ -10,6 +10,13 @@ Everything is written in TypeScript on top of Express and Firestore.
 
 ---
 
+## Live URLs
+
+- Backend base URL: https://realtime-dashboard-backend-5kig.onrender.com/
+- Frontend app: https://realtime-dashboard-frontend-3njnaqjx0-md-tokey-zawads-projects.vercel.app/login
+
+---
+
 ## Running the backend
 
 From the `backend` folder:
@@ -153,7 +160,7 @@ Base path: `/api`
 The demo credentials are, by default:
 
 - **Email:** `admin@example.com`
-- **Password:** `password123`
+- **Password:** `Admin@123`
 
 > If you change them, also update the frontend README.
 
