@@ -15,6 +15,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(requestLogger);
 
+// Simple base URL health check
+app.get('/', (req, res) => {
+    res.json({ status: 'ok' });
+});
+
 app.use('/api', router);
 
 app.use((req, res) => {
