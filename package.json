@@ -7,6 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
+    "dev": "ts-node-dev src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
     "test": "jest"
   },
   "keywords": [],
